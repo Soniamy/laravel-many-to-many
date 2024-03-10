@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 // Models
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Technology;
 
 // Helpers
 use Illuminate\Support\Str;
@@ -35,8 +36,9 @@ class PostController extends Controller
     public function create()
     {
        $categories = Category::all();
+       $technologies = Technology::all();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories','technologies'));
     }
 
     /**
@@ -54,6 +56,12 @@ class PostController extends Controller
             'category_id' => $postData['category_id'],
         ]);
 
+        if (isset($postData['technologies'])) {
+            foreach ($postData['technologies'] as $singleTechnologyId) {
+                $post->technologies()->attach($singleTechnologyId);
+            }
+        }
+
         return redirect()->route('admin.posts.show', compact('post'));
         
     }
@@ -61,11 +69,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug)
+    public function show(Post $post)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
-
-        return view('admin.posts.show', compact('post'));
+       return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -74,8 +80,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+         $technologies = Technology::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories','technologies'));
     }
 
     /**
@@ -92,6 +99,12 @@ class PostController extends Controller
             'content' => $postData['content'],
             'category_id' => $postData['category_id'],
         ]);
+         if (isset($postData['technologies'])) {
+            $post->technologies()->sync($postData['technologies']);
+        }
+        else {
+            $post->technologies()->detach();
+        }
 
         return redirect()->route('admin.posts.show', compact('post'));
     }

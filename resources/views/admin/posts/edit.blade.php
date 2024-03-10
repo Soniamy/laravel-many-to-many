@@ -58,7 +58,30 @@
                 <label for="content" class="form-label">Contenuto <span class="text-danger">*</span></label>
                 <textarea class="form-control" id="content" name="content" rows="3" placeholder="Inserisci il contenuto..." maxlength="10000" required>{{ old('content', $post->content) }}</textarea>
             </div>
+             <div class="mb-3">
+                <label class="form-label">Tecnologie</label>
 
+                <div>
+                    @foreach ($technologies as $technology)
+                        <div class="form-check form-check-inline">
+                            <input
+                                @if ($errors->any())
+                                    {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
+                               @elseif ($post->technologies && $post->technologies->contains($technology->id))
+                                checked
+                                @endif
+                                class="form-check-input"
+                                type="checkbox"
+                                id="technology-{{ $technology->id }}"
+                                name="technologies[]"
+                                value="{{ $technology->id }}">
+                            <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology->title }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div>
             <div>
                 <button type="submit" class="btn btn-warning w-100">
                     Aggiorna

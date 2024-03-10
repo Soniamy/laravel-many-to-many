@@ -44,15 +44,11 @@
                                         @endif
                                     </td>
                                     <td>
-                                         <div>
-                                            @forelse ($technology->posts ?? [] as $post)
-                                                <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}" class="badge rounded-pill text-bg-primary">
-                                                    {{ $technolog->title }}
-                                                </a>
-                                            @empty
-                                                -
-                                            @endforelse
-                                        </div>
+                                    @forelse ($post->technologies as $technology)
+                                         <a href="{{route('admin.technologies.show',['technology' => $technology->id])}}"class="badge rounded-pill text-bg-info">{{$technology->title}}</a>
+                                    @empty
+                                        -
+                                    @endforelse 
                                     </td>
                                     <td>{{ $post->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $post->created_at->format('H:i') }}</td>

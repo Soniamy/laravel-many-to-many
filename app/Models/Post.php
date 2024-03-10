@@ -21,7 +21,7 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
     // Relazione Many-to-Many con Technology
-    public function tecnologies()
+    public function technologies()
     {
         return $this->belongsToMany(Technology::class);
     }

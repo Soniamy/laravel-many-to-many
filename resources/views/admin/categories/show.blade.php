@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('page-title',  $technology->title)
+@section('page-title',  $category->title)
 @section('main-content')
    <div class="row mb-4">
         <div class="col">
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-success">
-                        {{ $technology->title }}
+                        {{ $category->title }}
                     </h1>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     </h2>
 
                   <ul>
-                    @foreach ($technology->posts as $post )
+                    @foreach ($category->posts as $post )
                         <li>
                             <a href="{{route('admin.posts.show', ['post' => $post->id])}}">
                             {{$post->title}}</a>
