@@ -23,6 +23,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Titolo</th>
                                 <th scope="col">Categoria</th>
+                                <th scope="col">Tecnologie</th>
                                 <th scope="col">Creato il</th>
                                 <th scope="col">Alle</th>
                                 <th scope="col">Azioni</th>
@@ -41,6 +42,17 @@
                                         @else
                                             -
                                         @endif
+                                    </td>
+                                    <td>
+                                         <div>
+                                            @forelse ($technology->posts ?? [] as $post)
+                                                <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}" class="badge rounded-pill text-bg-primary">
+                                                    {{ $technolog->title }}
+                                                </a>
+                                            @empty
+                                                -
+                                            @endforelse
+                                        </div>
                                     </td>
                                     <td>{{ $post->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $post->created_at->format('H:i') }}</td>

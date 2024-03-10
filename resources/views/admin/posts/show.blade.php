@@ -18,12 +18,12 @@
                         </h2>
                     @endif
                     <div>
-                        Tag:
-                        @forelse ($post->tags as $tag)
-                            <a href="{{ route('admin.tags.show', ['tag' => $tag->id]) }}" class="badge rounded-pill text-bg-primary">
-                                {{ $tag->title }}
+                        Tecnologie:
+                        @forelse ($technology->posts ?? [] as $post)
+                            <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}" class="badge rounded-pill text-bg-primary">
+                                {{ $technolog->title }}
                             </a>
-                        @empty
+                            @empty
                             -
                         @endforelse
                     </div>

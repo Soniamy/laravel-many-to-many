@@ -15,9 +15,14 @@ class Post extends Model
         'content',
         'category_id'
     ];
-    //Relazione//
+    // Relazione One-to-Many con Category
      public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    // Relazione Many-to-Many con Technology
+    public function tecnologies()
+    {
+        return $this->belongsToMany(Technology::class);
     }
 }

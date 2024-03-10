@@ -14,9 +14,9 @@ class Technology extends Model
         'title',
         'slug'
     ];
-    //Relazione//
-     public function posts()
+    // Relazione Many-to-Many con Post
+    public function posts()
     {
-       
+        return $this->belongsToMany(Post::class);
     }
 }
