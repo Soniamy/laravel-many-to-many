@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Technology extends Model
 {
-    use HasFactory;
+     use HasFactory;
+
+    //Utilizzo di Fillable
+     protected $fillable = [
+        'title',
+        'slug'
+    ];
+    //Relazione//
+     public function posts()
+    {
+       
+    }
 }

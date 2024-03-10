@@ -29,6 +29,9 @@
                              <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.categories.index') }}">Categorie</a>
                             </li>
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.technologies.index') }}">Tecnologie</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Link 3</a>
                             </li>

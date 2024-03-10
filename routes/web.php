@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\MainController as AdminMainController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\TechnologyController as AdminTechnologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::prefix('admin')
     Route::get('/dashboard', [AdminMainController::class, 'dashboard'])->name('dashboard');
     Route::resource('posts', AdminPostController::class);
     Route::resource('categories', AdminCategoryController::class);
+    Route::resource('admin/technologies', AdminTechnologyController::class);
 
 });
 
